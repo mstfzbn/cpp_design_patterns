@@ -1,7 +1,12 @@
 #include <iostream>
 #include <random>
 #include <cmath>
+#include <memory>
+#include <string>
+#include <typeinfo>  //show type of variable  std::cout << typeid(variable).name() << std::endl;
 
+constexpr unsigned short RANGE_START = 1;
+constexpr unsigned short RANGE_END = 100;
 
 
 int getRandom(int begin, int end) {
@@ -14,7 +19,6 @@ int getRandom(int begin, int end) {
 }
 
 //inner factory pattern
-//can be a shape with various forms.. perhaps
 class Point
 {
 private:
@@ -32,13 +36,35 @@ public:
 
         static Point NewCartesian( const double x, const double y )
         {
-            return { x,y };
+            return { x, y };
         }
 
         static Point NewPolar( const double r, const double theta )
         {
             return { r * cos(theta), r * sin(theta) };
         }
+
+
+        static std::unique_ptr<Point> New_Cartesian_Unique_Pointer( const double x, const double y )
+        {
+            return std::unique_ptr<Point>( new Point( x, y ) );
+        }
+
+        static std::unique_ptr<Point> New_Polar_Unique_Pointer( const double r, const double theta )
+        {
+            return std::unique_ptr<Point>( new Point( r * cos(theta), r * sin(theta) ) );
+        }
+
+        static Point * create_new_cartesian_pointer( const double x, const double y )
+        {
+            return new Point{ x, y};
+        }
+
+        static Point * create_new_polar_pointer( const double r, const double theta )
+        {
+            return new Point{ r * cos(theta), r * sin(theta) };
+        }
+
     };
 
     inline double Get_X() const { return x; }
@@ -47,12 +73,18 @@ public:
     //an example
     //auto other_experimental = Point::PointFactory::NewPolar(3, M_PI_2);
 };
+/////////////////// inner factory end /////
+
 
 int main( int charc, char * charv[])
 {
+    std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
+    Point * classic_point = Point::PointFactory::create_new_cartesian_pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
-	return 0;
+    delete classic_point;
+
+    return 0;
 }
 
 
