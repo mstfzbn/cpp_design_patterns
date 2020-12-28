@@ -18,6 +18,66 @@ int getRandom(int begin, int end) {
     return uniformDist(engine);
 }
 
+/*
+//factory methods
+class Point
+{
+private:
+    double x,y;
+
+    Point( const double x, const double y ) : x{x}, y{y} {}
+public:
+
+    //factory methods
+    static Point NewCartesian( const double x, const double y )
+    {
+        return { x, y };
+    }
+
+    static Point NewPolar( const double r, const double theta )
+    {
+        return { r * cos(theta), r * sin(theta) };
+    }
+
+    inline double Get_X() const { return x; }
+    inline double Get_Y() const { return y; }
+};
+*/
+
+//creating Point with a Factory
+class Point
+{
+    friend class PointFactory;
+private:
+    double x,y;
+
+    Point( const double x, const double y ) : x{x}, y{y} {}
+public:
+
+    inline double Get_X() const { return x; }
+    inline double Get_Y() const { return y; }
+};
+
+class PointFactory
+{
+private:
+
+    PointFactory();
+
+public:
+
+    static Point NewCartesian( const double x, const double y )
+    {
+        return { x, y };
+    }
+
+    static Point NewPolar( const double r, const double theta )
+    {
+        return { r * cos(theta), r * sin(theta) };
+    }
+};
+
+/*
 //inner factory pattern
 class Point
 {
@@ -75,14 +135,16 @@ public:
 };
 /////////////////// inner factory end /////
 
-
+*/
 int main( int charc, char * charv[])
 {
-    std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
+   // std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
-    Point * classic_point = Point::PointFactory::create_new_cartesian_pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
+   // Point * classic_point = Point::PointFactory::create_new_cartesian_pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
-    delete classic_point;
+   // delete classic_point;
+
+    Point some_point = PointFactory::NewCartesian(getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END));
 
     return 0;
 }
