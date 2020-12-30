@@ -3,7 +3,11 @@
 #include <cmath>
 #include <memory>
 #include <string>
+#include <vector>
+#include <map>
 #include <typeinfo>  //show type of variable  std::cout << typeid(variable).name() << std::endl;
+
+#include "singleton.h"
 
 constexpr unsigned short RANGE_START = 1;
 constexpr unsigned short RANGE_END = 100;
@@ -44,6 +48,7 @@ public:
 };
 */
 
+/*
 //creating Point with a Factory
 class Point
 {
@@ -76,8 +81,8 @@ public:
         return { r * cos(theta), r * sin(theta) };
     }
 };
+*/
 
-/*
 //inner factory pattern
 class Point
 {
@@ -135,16 +140,18 @@ public:
 };
 /////////////////// inner factory end /////
 
-*/
+
 int main( int charc, char * charv[])
 {
-   // std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
+    std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
-   // Point * classic_point = Point::PointFactory::create_new_cartesian_pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
+    Point * classic_point = Point::PointFactory::create_new_cartesian_pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
-   // delete classic_point;
+    delete classic_point;
 
-    Point some_point = PointFactory::NewCartesian(getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END));
+  // Point some_point = PointFactory::NewCartesian(getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END));
+
+    Singleton::get().some_function();
 
     return 0;
 }

@@ -8,5 +8,6 @@ project(first)
 add_executable(
 
   first
+  singleton.h
   main.cpp
 )
