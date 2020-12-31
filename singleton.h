@@ -2,13 +2,18 @@
 
 class Singleton
 {
-private:
+protected:
     Singleton(){};
 public:
     static Singleton & get()
     {
-        static Singleton m_singleton_object;
-        return m_singleton_object;
+        //this is thread safe, since c++11
+//        static Singleton m_singleton_object;
+//        return m_singleton_object;
+
+        //heap allocation, which not cause a memory leak
+        static Singleton * m_singleton_object = new Singleton;
+        return * m_singleton_object;
     }
 
     void some_function()
