@@ -141,6 +141,34 @@ public:
 /////////////////// inner factory end /////
 
 
+//abstract factory
+
+class HotDrink
+{
+    virtual void prepare( const short volume ) = 0;
+};
+
+class Tea : HotDrink
+{
+    void prepare( const short volume ) override
+    {
+        std::cout << "Take a tea bag, boil water, pour " << volume << " ml, add some limon.\n";
+    }
+};
+
+class Coffee : HotDrink
+{
+    void prepare( const short volume ) override
+    {
+        std::cout << "Take a coffee dose, boil water, pour " << volume << " ml, add some sugar.\n";
+    }
+};
+
+class HotDrinkFactory
+{
+    virtual std::unique_ptr<HotDrink> make() const = 0;
+};
+
 int main( int charc, char * charv[])
 {
     std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
