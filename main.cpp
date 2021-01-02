@@ -143,31 +143,68 @@ public:
 
 //abstract factory
 
-class HotDrink
-{
-    virtual void prepare( const short volume ) = 0;
-};
+//class HotDrink
+//{
+//public:
+//    virtual void prepare( const short volume ) = 0;
+//};
 
-class Tea : HotDrink
-{
-    void prepare( const short volume ) override
-    {
-        std::cout << "Take a tea bag, boil water, pour " << volume << " ml, add some limon.\n";
-    }
-};
+//class Tea : HotDrink
+//{
+//    void prepare( const short volume ) override
+//    {
+//        std::cout << "Take a tea bag, boil water, pour " << volume << " ml, add some limon.\n";
+//    }
+//};
 
-class Coffee : HotDrink
-{
-    void prepare( const short volume ) override
-    {
-        std::cout << "Take a coffee dose, boil water, pour " << volume << " ml, add some sugar.\n";
-    }
-};
+//class Coffee : HotDrink
+//{
+//    void prepare( const short volume ) override
+//    {
+//        std::cout << "Take a coffee dose, boil water, pour " << volume << " ml, add some sugar.\n";
+//    }
+//};
 
-class HotDrinkFactory
-{
-    virtual std::unique_ptr<HotDrink> make() const = 0;
-};
+//class HotDrinkFactory  //abstract factory
+//{
+//public:
+//    virtual std::unique_ptr<HotDrink> make() const = 0;
+//};
+
+//class CoffeeFactory : HotDrinkFactory
+//{
+//    std::unique_ptr<HotDrink> make() const override
+//    {
+//        return std::make_unique<Coffee>();
+//    }
+//};
+
+//class TeaFactory : HotDrinkFactory
+//{
+//    std::unique_ptr<HotDrink> make() const override
+//    {
+//        return std::make_unique<Tea>();
+//    }
+//};
+
+//class DrinkFactory
+//{
+//    std::map< std::string, std::unique_ptr<HotDrinkFactory>> m_hot_factories;
+
+//public:
+//    DrinkFactory()
+//    {
+//        m_hot_factories["coffee"] = std::make_unique<CoffeeFactory>();
+//        m_hot_factories["tea"] = std::make_unique<TeaFactory>();
+//    }
+
+//    std::unique_ptr<HotDrink> make_drink( const std::string & name)
+//    {
+//        auto drink = m_hot_factories[name]->make();
+//        drink->prepare(200);
+//        return drink;
+//    }
+//};
 
 int main( int charc, char * charv[])
 {
