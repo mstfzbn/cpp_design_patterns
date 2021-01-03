@@ -9,5 +9,6 @@ add_executable(
 
   first
   singleton.h
+  builder.h
   main.cpp
 )

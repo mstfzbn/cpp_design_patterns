@@ -8,6 +8,7 @@
 #include <typeinfo>  //show type of variable  std::cout << typeid(variable).name() << std::endl;
 
 #include "singleton.h"
+#include "builder.h"
 
 constexpr unsigned short RANGE_START = 1;
 constexpr unsigned short RANGE_END = 100;
@@ -217,6 +218,11 @@ int main( int charc, char * charv[])
   // Point some_point = PointFactory::NewCartesian(getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END));
 
     Singleton::get().some_function();
+
+    HtmlBuilder builder{"ul"};
+    builder.add_child("1", "hello");
+    builder.add_child("2", "world");
+    std::cout << builder.str();
 
     return 0;
 }
