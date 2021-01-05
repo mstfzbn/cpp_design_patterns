@@ -222,7 +222,9 @@ int main( int charc, char * charv[])
     HtmlBuilder builder{"ul"};
     builder.add_child("1", "hello");
     builder.add_child("2", "world");
-    std::cout << builder.str();
+    builder.add_child_chained("3","chained").add_child_chained("4","test");
+    builder.add_child_chained_arrow_operator("5","arrow")->add_child_chained_arrow_operator("6","opperator");
+    std::cout << builder.echo();
 
     return 0;
 }
