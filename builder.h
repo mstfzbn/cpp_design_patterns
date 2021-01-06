@@ -1,38 +1,49 @@
 #pragma once
 #include <string>
 #include <vector>
-
-class HtmlElement
-{
-public:
-
-    std::string name;
-    std::string text;
-    std::vector<HtmlElement> elements;
-
-    HtmlElement() {}
-    HtmlElement( const std::string& name, const std::string& text ) : name{name}, text{text} {}
-
-    std::string echo( int indent = 0 ) const
-    {
-        std::string to_return{};
-
-        for(size_t i{0}; i < elements.size(); ++i)
-        {
-            to_return += elements[i].text + " ";
-        }
-
-        return to_return;
-    }
-};
+#include <memory>
 
 class HtmlBuilder
 {
 public:
 
+    class HtmlElement
+    {
+    public:
+
+        std::string name;
+        std::string text;
+        std::vector<HtmlElement> elements;
+
+        //communicating intent
+        static std::unique_ptr<HtmlBuilder> build( const std::string& root_name )
+        {
+            return std::make_unique<HtmlBuilder>( root_name );
+        }
+
+        std::string echo( int indent = 0 ) const
+        {
+            std::string to_return{};
+
+            for( size_t i{0}; i < elements.size(); ++i )
+            {
+                to_return += elements[i].text + " ";
+            }
+
+            return to_return;
+        }
+
+    public:
+
+        HtmlElement() {}
+        HtmlElement( const std::string& name, const std::string& text ) : name{name}, text{text} {}
+    };
+
+public:
+
     HtmlElement root;
 
-    HtmlBuilder( const std::string& root_name) { root.name = root_name; }
+    HtmlBuilder( const std::string& root_name ) { root.name = root_name; }
 
     void add_child( const std::string& child_name, const std::string& child_text )
     {

@@ -219,12 +219,13 @@ int main( int charc, char * charv[])
 
     Singleton::get().some_function();
 
-    HtmlBuilder builder{"ul"};
-    builder.add_child("1", "hello");
-    builder.add_child("2", "world");
-    builder.add_child_chained("3","chained").add_child_chained("4","test");
-    builder.add_child_chained_arrow_operator("5","arrow")->add_child_chained_arrow_operator("6","opperator");
-    std::cout << builder.echo();
+    //HtmlBuilder builder{"ul"};
+    auto builder = HtmlBuilder::HtmlElement::build("ul");
+    builder->add_child("1", "hello");
+    builder->add_child("2", "world");
+    builder->add_child_chained("3","chained").add_child_chained("4","test");
+    builder->add_child_chained_arrow_operator("5","arrow")->add_child_chained_arrow_operator("6","opperator");
+    std::cout << builder->echo();
 
     return 0;
 }
