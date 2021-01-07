@@ -74,6 +74,111 @@ public:
 
 
 
+//Composite Builder
+/*
+class Person
+{
+    //address
+    std::string m_street_address, m_post_code, m_city;
+
+    //employment
+    std::string m_company_name, m_position;
+    int m_annual_income{0};
+
+    Person() {}
+};
+
+class PersonBuilderBase
+{
+protected:
+    Person& m_person;
+    explicit PersonBuilderBase( Person& person ) : m_person{person} {}
+
+public:
+    operator Person()
+    {
+        return std::move( m_person );
+    }
+
+    //builder facets
+    PersonAddressBuilder lives() const;
+    PersonJobBuilder works() const;
+
+};
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
