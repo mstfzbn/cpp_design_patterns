@@ -73,11 +73,11 @@ public:
 };
 
 
-
 //Composite Builder
 /*
 class Person
 {
+public:
     //address
     std::string m_street_address, m_post_code, m_city;
 
@@ -101,9 +101,41 @@ public:
     }
 
     //builder facets
-    PersonAddressBuilder lives() const;
-    PersonJobBuilder works() const;
+   // PersonAddressBuilder lives() const;
+   // PersonJobBuilder works() const;
 
+    class PersonAddressBuilder : public PersonBuilderBase
+    {
+        typedef PersonAddressBuilder self;
+    public:
+        explicit PersonAddressBuilder( Person& person ) : PersonBuilderBase{ person } {}
+
+        self& at( std::string & street_address )
+        {
+            m_person.m_street_address = street_address;
+            return *this;
+        }
+
+        self& with_postcode( std::string & post_code )
+        {
+            m_person.m_post_code = post_code;
+            return *this;
+        }
+
+        self& in( std::string & in )
+        {
+            m_person.m_city = in;
+            return *this;
+        }
+    };
+};
+
+class PersonBuilder : public PersonBuilderBase
+{
+public:
+    Person m_person; //object being built
+
+    PersonBuilder() : PersonBuilderBase{ m_person } {}
 };
 */
 
