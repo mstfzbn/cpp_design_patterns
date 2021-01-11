@@ -1,4 +1,5 @@
 #pragma once
+#include "includes.h"
 
 class Singleton
 {

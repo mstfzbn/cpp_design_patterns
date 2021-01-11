@@ -8,6 +8,8 @@ project(first)
 add_executable(
 
   first
+  includes.h
+  prototype.h
   singleton.h
   builder.h
   main.cpp
