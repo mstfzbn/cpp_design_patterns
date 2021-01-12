@@ -1,8 +1,8 @@
-#pragma once
 
 #include "includes.h"
 #include "singleton.h"
 #include "builder.h"
+#include "prototype.h"
 
 constexpr unsigned short RANGE_START = 1;
 constexpr unsigned short RANGE_END = 100;
@@ -220,6 +220,11 @@ int main( int charc, char * charv[])
     builder->add_child_chained("3","chained").add_child_chained("4","test");
     builder->add_child_chained_arrow_operator("5","arrow")->add_child_chained_arrow_operator("6","opperator");
     std::cout << builder->echo();
+
+    Contact worker{"",new Address{"123 East", "London", 0}}; //a prototype of worker is created
+    Contact mr_jhon{worker};  //new worker created by prototype
+    mr_jhon.name = "Mr. Jhon";
+    mr_jhon.address->suite = 11;
 
     return 0;
 }

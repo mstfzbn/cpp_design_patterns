@@ -22,6 +22,16 @@ struct Contact
                 rhs.address->suite
         };
     };
+
+    Contact( const std::string name, const Address* rhs) : name{ name }
+    {
+        address = new Address
+        {
+                rhs->street,
+                rhs->city,
+                rhs->suite
+        };
+    };
 };
 
 
