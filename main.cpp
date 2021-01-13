@@ -226,6 +226,9 @@ int main( int charc, char * charv[])
     mr_jhon.name = "Mr. Jhon";
     mr_jhon.address->suite = 11;
 
+    Contact mss_jhon = mr_jhon;
+    mss_jhon.name = "Mss. Jhon";
+
     return 0;
 }
 

@@ -32,6 +32,20 @@ struct Contact
                 rhs->suite
         };
     };
+
+    Contact& operator=( const Contact& rhs)
+    {
+        if(this == &rhs)
+        {
+            return *this;
+        }
+
+        this->name = rhs.name;
+        this->address = rhs.address;
+
+        return *this;
+    };
+
 };
 
 
