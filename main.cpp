@@ -203,7 +203,7 @@ public:
 
 int main( int charc, char * charv[])
 {
-    std::unique_ptr uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
+    std::unique_ptr<Point> uni_point = Point::PointFactory::New_Cartesian_Unique_Pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
     Point * classic_point = Point::PointFactory::create_new_cartesian_pointer( getRandom(RANGE_START,RANGE_END), getRandom(RANGE_START,RANGE_END) );
 
