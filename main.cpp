@@ -221,10 +221,12 @@ int main( int charc, char * charv[])
     builder->add_child_chained_arrow_operator("5","arrow")->add_child_chained_arrow_operator("6","opperator");
     std::cout << builder->echo();
 
+    std::cout << "\nwelcome to automotiv, Musti\n";
+
     Contact worker{"",new Address{"123 East", "London", 0}}; //a prototype of worker is created
     Contact mr_jhon{worker};  //new worker created by prototype
     mr_jhon.name = "Mr. Jhon";
-    mr_jhon.address->suite = 11;
+    mr_jhon.address->suite = 112;
 
     Contact mss_jhon = mr_jhon;
     mss_jhon.name = "Mss. Jhon";
